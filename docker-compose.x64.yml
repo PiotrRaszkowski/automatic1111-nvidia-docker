@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  automatic1111-nvidia-docker:
+    container_name: automatic1111-nvidia-docker
+    image: piotrraszkowski/automatic1111-nvidia-docker:latest
+    ports:
+      - "7860:7860"
+    environment:
+      - IS_MACOS=false
+      - USE_CUDA_118=false
+      - USE_CUDA_121=true
+      - USE_XFORMERS=true
+    volumes:
+      - stable-diffusion-webui:/home/automatic1111/stable-diffusion-webui
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+
+volumes:
+  stable-diffusion-webui:
