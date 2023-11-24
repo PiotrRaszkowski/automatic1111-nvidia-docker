@@ -11,6 +11,7 @@ services:
       - USE_CUDA_118=false
       - USE_CUDA_121=true
       - USE_XFORMERS=true
+      - CUDA_MODULE_LOADING=LAZY
     volumes:
       - stable-diffusion-webui:/home/automatic1111/stable-diffusion-webui
     deploy:

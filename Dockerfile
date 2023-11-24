@@ -27,6 +27,12 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
 RUN nvcc -V
 
+ENV CUDA_MODULE_LOADING=LAZY
+ENV SAFETENSORS_FAST_GPU=1
+ENV TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
+ENV NVIDIA_REQUIRE_CUDA="cuda>=11.6 driver>=450"
+
 FROM automatic1111-base as automatic1111-base-arm64
 
 FROM automatic1111-base-${BUILD_VERSION}
@@ -64,7 +70,7 @@ ADD webui-user.sh .
 
 ENV USE_XFORMERS false
 ENV IS_MACOS false
-ENV USE_CUDE_118 true
+ENV USE_CUDA_121 true
 
 RUN cat webui-user.sh
 
