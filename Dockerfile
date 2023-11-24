@@ -13,7 +13,7 @@ RUN apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libread
 
 #Install Nvidia CUDA
 #Add Nvidia Repo Apt pin to prevent kernel driver installation
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+COPY cuda-repo-pin /etc/apt/preferences.d/cuda-repo-pin
 RUN mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-ubuntu2204.pin
 
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
