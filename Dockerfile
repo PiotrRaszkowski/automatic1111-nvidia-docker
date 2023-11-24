@@ -24,6 +24,8 @@ RUN apt install -y cuda-toolkit
 ENV PATH=$PATH:/usr/local/cuda/bin
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
+RUN nvcc -V
+
 #ENV PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 #ENV LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
