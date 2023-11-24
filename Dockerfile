@@ -36,8 +36,8 @@ RUN pyenv version
 RUN python --version
 
 #Install automatic1111
-VOLUME /home/automatic1111/stable-diffusion-webui
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
+VOLUME /home/automatic1111/stable-diffusion-webui
 WORKDIR /home/automatic1111/stable-diffusion-webui
 
 ADD webui-user.sh .
