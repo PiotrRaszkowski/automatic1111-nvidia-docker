@@ -22,8 +22,15 @@ RUN dpkg -i cuda-keyring_1.1-1_all.deb
 RUN apt update
 RUN apt install -y cuda-toolkit
 
-ENV PATH=$PATH:/usr/local/cuda/bin
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+#ENV PATH=$PATH:/usr/local/cuda/bin
+#ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+
+ENV PATH /usr/local/nvidia/bin:/usr/local/cuda/bin:${PATH}
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
+
+#ENV PATH /usr/local/cuda/bin${PATH:+:${PATH}}
+#ENV LD_LIBRARY_PATH /usr/local/cuda-12.2/lib64\
+#                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}
 
 RUN nvcc -V
 
@@ -34,11 +41,14 @@ RUN apt-get install libcudnn8=${cudnn_version}-1+${cuda_version}
 RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
 RUN apt-get install libcudnn8-samples=${cudnn_version}-1+${cuda_version}
 
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 ENV CUDA_MODULE_LOADING=LAZY
-ENV SAFETENSORS_FAST_GPU=1
-ENV TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1
-ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
-ENV NVIDIA_REQUIRE_CUDA="cuda>=11.6 driver>=450"
+
+#ENV SAFETENSORS_FAST_GPU=1
+#ENV TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1
+#ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
+#ENV NVIDIA_REQUIRE_CUDA="cuda>=11.6 driver>=450"
 
 FROM automatic1111-base as automatic1111-base-arm64
 
