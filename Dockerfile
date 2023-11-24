@@ -97,5 +97,7 @@ RUN echo "$PATH"
 
 RUN pip install --upgrade pip
 
+RUN pip install -U xformers --index-url https://download.pytorch.org/whl/cu121
+
 EXPOSE 7860
 ENTRYPOINT [ "./webui.sh" ]
