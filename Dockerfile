@@ -1,4 +1,6 @@
-FROM ubuntu:22.04
+ARG BUILD_VERSION=x86_64
+
+FROM ubuntu:22.04 as automatic1111-base
 
 SHELL ["/bin/bash", "-c"]
 
@@ -11,10 +13,9 @@ RUN apt install -y libgoogle-perftools-dev
 #Install required base packages
 RUN apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev git
 
-#Install Nvidia CUDA
-#Add Nvidia Repo Apt pin to prevent kernel driver installation
-#COPY cuda-repo-pin /etc/apt/preferences.d/cuda-repo-pin
+FROM automatic1111-base as automatic1111-base-x86_64
 
+#Install Nvidia CUDA
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
 RUN dpkg -i cuda-keyring_1.1-1_all.deb
 
@@ -26,12 +27,9 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
 RUN nvcc -V
 
-#ENV PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-#ENV LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+FROM automatic1111-base as automatic1111-base-arm64
 
-# RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
-#ENV CUDNN_VERSION=8.9.4.25
-#ENV CUDA_VERSION=cuda12.2
+FROM automatic1111-base-${BUILD_VERSION}
 
 #Create new user
 RUN useradd -ms /bin/bash automatic1111
