@@ -11,6 +11,24 @@ RUN apt install -y libgoogle-perftools-dev
 #Install required base packages
 RUN apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev git
 
+#Install Nvidia CUDA
+#Add Nvidia Repo Apt pin to prevent kernel driver installation
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+RUN mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-ubuntu2204.pin
+
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+RUN sudo dpkg -i cuda-keyring_1.1-1_all.deb
+
+RUN apt update
+RUN apt install -y cuda
+
+# RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+#ENV CUDNN_VERSION=8.9.4.25
+#ENV CUDA_VERSION=cuda12.2
+
+#ENV PATH=$PATH:/usr/local/cuda/bin
+#ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+
 #Create new user
 RUN useradd -ms /bin/bash automatic1111
 
