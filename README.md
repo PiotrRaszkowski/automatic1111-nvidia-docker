@@ -20,7 +20,7 @@
 
 Automatic1111 should be available: http://127.0.0.1:7860
 
-Build and run take a while... but at the end you will have:
+Build and run take a while... depending on your network speed, at the end you will have:
 - Docker Image created.
 - Docker container running with dedicated volume.
 - Automatic1111 installed to the dedicated volume and accesible from your network.
