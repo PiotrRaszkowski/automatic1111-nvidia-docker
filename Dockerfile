@@ -17,7 +17,7 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86
 RUN mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-ubuntu2204.pin
 
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-RUN sudo dpkg -i cuda-keyring_1.1-1_all.deb
+RUN dpkg -i cuda-keyring_1.1-1_all.deb
 
 RUN apt update
 RUN apt install -y cuda
