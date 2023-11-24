@@ -27,6 +27,13 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
 RUN nvcc -V
 
+#Install cuDNN
+ENV cuda_version=cuda12.2
+ENV cudnn_version=8.9.6.*
+RUN apt-get install libcudnn8=${cudnn_version}-1+${cuda_version}
+RUN apt-get install libcudnn8-dev=${cudnn_version}-1+${cuda_version}
+RUN apt-get install libcudnn8-samples=${cudnn_version}-1+${cuda_version}
+
 ENV CUDA_MODULE_LOADING=LAZY
 ENV SAFETENSORS_FAST_GPU=1
 ENV TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1

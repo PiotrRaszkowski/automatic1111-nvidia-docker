@@ -1,5 +1,5 @@
 #!/bin/bash
-export COMMANDLINE_ARGS="$COMMANDLINE_ARGS --enable-insecure-extension-access --listen --medvram --no-half-vae"
+export COMMANDLINE_ARGS="$COMMANDLINE_ARGS --enable-insecure-extension-access --listen --medvram --no-half-vae --skip-torch-cuda-test"
 export LD_PRELOAD=libtcmalloc.so
 
 if [ "$IS_MACOS" = "true" ]; then
