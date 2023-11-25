@@ -38,3 +38,10 @@ Build and run take a while... depending on your network speed, at the end you wi
 1. Run `docker compose -f docker-compose.macos.yml up -d`.
 
 Automatic1111 should be available: http://127.0.0.1:7860
+
+### Usefull links
+- https://www.cherryservers.com/blog/install-cuda-ubuntu
+- https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/base/Dockerfile
+- https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#package-manager-ubuntu-install
+- https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+- https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network
