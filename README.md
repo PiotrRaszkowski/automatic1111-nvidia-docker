@@ -1,6 +1,6 @@
+# DEPRECATED -> please use https://github.com/PiotrRaszkowski/generative-ai-tools-nvidia-docker with all the tools.
+
 # Installation guide
-
-
 
 ## Ubuntu Server with Nvidia
 
@@ -25,7 +25,7 @@ Build and run take a while... depending on your network speed, at the end you wi
 - Docker container running with dedicated volume.
 - Automatic1111 installed to the dedicated volume and accesible from your network.
 
-## Ubuntu Server with Nvidia
+## MacOS (arm64)
 
 ### Prerequisites
 1. MacOS with arm64 (Apple Silicon) architecture.
@@ -39,7 +39,13 @@ Build and run take a while... depending on your network speed, at the end you wi
 
 Automatic1111 should be available: http://127.0.0.1:7860
 
-### Usefull links
+## Customization
+You can customize your container by setting the following env variables:
+- USE_CUDA_121=true/false -> provides CUDA support, basically it configures the right torch and torchvision versions to be installed
+- IS_MACOS=true/false ->
+- USE_XFORMERS=true/false -> adds --xformers to the AUTOMATIC1111 run path,
+
+## Usefull links
 - https://www.cherryservers.com/blog/install-cuda-ubuntu
 - https://gitlab.com/nvidia/container-images/cuda/-/blob/master/dist/11.7.1/ubuntu2204/base/Dockerfile
 - https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#package-manager-ubuntu-install

@@ -9,7 +9,6 @@ services:
       - "7860:7860"
     environment:
       - IS_MACOS=false
-      - USE_CUDA_118=false
       - USE_CUDA_121=true
       - USE_XFORMERS=true
       - CUDA_MODULE_LOADING=LAZY
